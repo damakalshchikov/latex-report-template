@@ -121,6 +121,7 @@ xelatex main.tex
 xelatex main.tex
 ```
 
+
 ## Настройка шрифтов
 
 В `main.tex` настроены шрифты для Linux:
