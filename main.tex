@@ -5,6 +5,10 @@
 % Шрифт всего документа - 12pt. Тип документа - статья
 \documentclass[12pt]{article}
 
+% Параметры документа (дисциплина, тема, преподаватель и т.п.)
+% Загружаем первым, чтобы флаги из config.tex были доступны в преамбуле
+\input{config}
+
 % Пакет для управления шрифтами
 \usepackage{fontspec} 
 % Шрифт по умолчанию
@@ -12,7 +16,7 @@
 % \setmainfont{Times New Roman}  % для Windows/macOS
 % \setmainfont{Liberation Serif} % для Linux
 
-% Шрифт для листинга (раскомментируй при необходимости)
+% Шрифт для листинга кода
 \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 % Альтернативы:
 % \setmonofont{Courier New}      % для Windows/macOS
@@ -33,13 +37,13 @@
 
 % Пакет для вставки изображений
 \usepackage{graphicx}
-% Указываем путь к изображениям (удобно для организации проекта)
+% Указываем путь к изображениям
 \graphicspath{{./images/}}
 
 % Пакет для ссылок в документе
 \usepackage{hyperref}
 
-% Улучшения для оглавлений/закладок PDF: загружать после hyperref
+% Улучшения для оглавлений/закладок PDF
 \usepackage{bookmark}
 
 % Пакет для разделительных символов в содержании
@@ -47,28 +51,25 @@
 \renewcommand{\cftdot}{.}
 \renewcommand{\cftsecdotsep}{\cftdotsep}
 
-% Пакет для библиографии
-% Для компиляции с библиографией используй рецепт: xelatex -> biber -> xelatex x2
-%\usepackage[backend=biber, style=gost-numeric, language=autobib, autolang=other]{biblatex}
-%\addbibresource{references.bib}
+% Пакет для библиографии (управляется флагом \ifbib в config.tex)
+% При включении компилируй по рецепту: xelatex -> biber -> xelatex x2
+\ifbib
+    \usepackage[backend=biber, style=gost-numeric, language=autobib, autolang=other]{biblatex}
+    \addbibresource{references.bib}
+\fi
 
-% Пакет для создания графиков
-%\usepackage{pgfplots}
-%\pgfplotsset{compat=1.18}
-%\pgfplotsset{/pgf/number format/use comma} % Использование запятой в качестве десятичного разделителя
+% Пакет для создания графиков (управляется флагом \ifplots в config.tex)
+\ifplots
+    \usepackage{pgfplots}
+    \pgfplotsset{compat=1.18}
+    \pgfplotsset{/pgf/number format/use comma}
+\fi
 
-% Пакеты для листинга кода и его подсветки
-% \usepackage{listings}
-% \usepackage{xcolor}
-
-% Параметры документа(дисциплина, год, тема и т.п.)
-\newcommand{\kafedraFirstString}{...}
-\newcommand{\kafedraSecondString}{...}
-\newcommand{\discipline}{...}
-\newcommand{\numberOfWork}{№... }
-\newcommand{\topic}{...}
-\newcommand{\teacher}{...}
-\newcommand{\yearr}{202... г.}
+% Пакеты для листинга кода (управляется флагом \iflisting в config.tex)
+\iflisting
+    \usepackage{listings}
+    \usepackage{xcolor}
+\fi
 
 % Начало документа
 \begin{document}
@@ -77,78 +78,7 @@
     \pagenumbering{gobble}
 
     % Титульная страница
-    \begin{titlepage}
-	
-    % Логотип вуза
-    \begin{figure}
-	       \centering
-	       \includegraphics[width=0.4\linewidth]{logo.png}
-    \end{figure}
-	
-    % Подпись под логотипом
-    \begin{center}
-	       \textbf{МИНОБРНАУКИ РОССИИ} \\
-	       \textbf{Федеральное государственное автономное образовательное учреждение} \\
-	       \textbf{высшего образования} \\
-	       \textbf{«Московский государственный технологический университет «СТАНКИН»} \\
-	       \textbf{(ФГАОУ ВО «МГТУ «СТАНКИН»)}
-		
-	       % Разделительная линия
-	       \noindent \hrule
-    \end{center}
-	
-    % Институт
-    \noindent
-    \begin{minipage}{0.5\textwidth}
-	       \raggedright
-	       \textbf{Институт} \\
-	       \textbf{информационных} \\
-	       \textbf{технологий}
-    \end{minipage}
-    % Кафедра
-    \hfill
-    \begin{minipage}{0.5\textwidth}
-	       \raggedleft
-	       \textbf{Кафедра} \\
-	       \textbf{\kafedraFirstString} \\
-	       \textbf{\kafedraSecondString}
-    \end{minipage}
-    \vspace{1cm}
-	
-    % Название работы
-    \begin{center}
-	       Лабораторная работа \numberOfWork  по дисциплине \\ «\discipline»
-    \end{center}
-    \vspace{1cm}
-	
-    % Тема работы
-    \begin{center}
-	       Тема \\ «\topic»
-    \end{center}
-    \vspace{3cm}
-	
-    % Выполнил
-    \noindent
-    \begin{minipage}{0.5\textwidth}
-	       \raggedright
-	       Выполнил студент группы ИДБ-23-14: \\
-	       \centering
-	       Дамакальщиков М. А.
-    \end{minipage}
-    % Преподаватель
-    \hfill
-    \begin{minipage}{0.5\textwidth}
-	       \raggedleft
-	       Проверил преподаватель: \\
-	       \teacher
-    \end{minipage}
-    \vfill
-	
-    % Конец титульной страницы
-    \centering
-    \small Москва, \yearr
-	
-    \end{titlepage}
+    \input{pages/titlepage}
 
     % Содержание
     \begin{center}
@@ -163,33 +93,17 @@
     \setcounter{page}{3}
 	
     % ==========================================
-    % ЗДЕСЬ ПИШИ СВОЙ КОНТЕНТ
+    % СОДЕРЖАНИЕ ОТЧЁТА
     % ==========================================
 
-    \section{Начало лабораторной работы}
+    \section{Начало отчёта}
 
         \input{chapters/chapter1.tex}
 
-    % ==========================================
-    % БИБЛИОГРАФИЯ (раскомментируй при использовании)
-    % ==========================================
-    
-    % Страница с библиографией
-    %\cleardoublepage
-
-    % Делаем так, чтобы библиография появлялась независимо от ссылок
-    %\nocite{*}
-
-    % Выводим библиографию по центру
-    %\begin{center}
-	       %\printbibliography[heading=bibintoc, title={Список литературы}]
-    %\end{center}
-
-    % Отключаем нумерацию страницы
-    %\thispagestyle{empty}
-
-    % Конец страницы с библиографией
-    %\cleardoublepage
+    % Список литературы (управляется флагом \ifbib в config.tex)
+    \ifbib
+        \input{pages/bibliography}
+    \fi
 
 % Конец документа
 \end{document}
