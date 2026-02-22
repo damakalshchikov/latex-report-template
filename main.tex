@@ -16,7 +16,7 @@
 % \setmainfont{Times New Roman}  % для Windows/macOS
 % \setmainfont{Liberation Serif} % для Linux
 
-% Шрифт для листинга (раскомментируй при необходимости)
+% Шрифт для листинга кода
 \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 % Альтернативы:
 % \setmonofont{Courier New}      % для Windows/macOS
@@ -37,13 +37,13 @@
 
 % Пакет для вставки изображений
 \usepackage{graphicx}
-% Указываем путь к изображениям (удобно для организации проекта)
+% Указываем путь к изображениям
 \graphicspath{{./images/}}
 
 % Пакет для ссылок в документе
 \usepackage{hyperref}
 
-% Улучшения для оглавлений/закладок PDF: загружать после hyperref
+% Улучшения для оглавлений/закладок PDF
 \usepackage{bookmark}
 
 % Пакет для разделительных символов в содержании
@@ -58,14 +58,18 @@
     \addbibresource{references.bib}
 \fi
 
-% Пакет для создания графиков
-%\usepackage{pgfplots}
-%\pgfplotsset{compat=1.18}
-%\pgfplotsset{/pgf/number format/use comma} % Использование запятой в качестве десятичного разделителя
+% Пакет для создания графиков (управляется флагом \ifplots в config.tex)
+\ifplots
+    \usepackage{pgfplots}
+    \pgfplotsset{compat=1.18}
+    \pgfplotsset{/pgf/number format/use comma}
+\fi
 
-% Пакеты для листинга кода и его подсветки
-% \usepackage{listings}
-% \usepackage{xcolor}
+% Пакеты для листинга кода (управляется флагом \iflisting в config.tex)
+\iflisting
+    \usepackage{listings}
+    \usepackage{xcolor}
+\fi
 
 % Начало документа
 \begin{document}
