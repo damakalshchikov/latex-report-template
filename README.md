@@ -1,237 +1,147 @@
-# LaTeX Шаблон для Лабораторной Работы
+# LaTeX шаблон для отчётов о лабораторных и семинарских работах
 
-Готовый шаблон для оформления лабораторных работ. Шаблон настроен для работы с XeLaTeX и поддерживает русский язык, кастомные шрифты и автоматическую компиляцию в VS Code.
+Готовый шаблон для оформления отчётов. Настроен для работы с XeLaTeX, поддерживает русский язык и кастомные шрифты.
 
 ## Требования
 
-- XeLaTeX (или pdflatex как альтернатива)
+- XeLaTeX
 - VS Code с расширением LaTeX Workshop
-- Установленные шрифты: Liberation Serif, DejaVu Sans Mono (для Linux)
 
-## Файловая архитектура
+## Файловая структура
 
 ```
 latex-lab-template/
-├── main.tex                 # Основной файл документа
-├── chapters/                # Папка с содержимым
-│   └── chapter1.tex         # Первая глава (используется как шаблон)
-├── images/                  # Папка для изображений
+├── main.tex                 # Преамбула и структура документа
+├── config.tex               # Параметры конкретной работы
+├── pages/
+│   ├── titlepage.tex        # Вёрстка титульного листа
+│   └── bibliography.tex     # Вёрстка страницы со списком литературы
+├── chapters/
+│   └── chapter1.tex         # Содержимое отчёта
+├── images/
 │   └── logo.png             # Логотип университета
-├── references.bib           # База данных для библиографии (опционально)
-├── .vscode/                 # Конфигурация VS Code
+├── references.bib           # База данных источников литературы
+├── .vscode/
 │   └── settings.json        # Настройки LaTeX Workshop
-├── .gitignore               # Правила игнорирования для Git
-└── README.md                # Этот файл
+├── .gitignore
+└── README.md
 ```
 
 ### Описание файлов
 
-**main.tex** - основной файл документа, содержит:
-- Строка магического комментария для XeLaTeX
-- Загрузку всех необходимых пакетов
-- Настройки шрифтов и языка
-- Оформление титульной страницы с полями для заполнения
-- Шаблон оглавления
-- Подключение глав через команду `\input{chapters/chapter1.tex}`
+**config.tex** — единственный файл, который нужно редактировать для каждой новой работы. Содержит булевы флаги для опциональных пакетов и все параметры документа: дисциплину, тему, группу, преподавателя и т.п.
 
-**chapters/chapter1.tex** - шаблон содержимого с примером структуры (раздел, подраздел)
+**main.tex** — преамбула с подключением пакетов и структура документа. Редактируется только для добавления новых глав через `\input{chapters/...}`.
 
-**references.bib** - файл для хранения источников в формате BibTeX (используется при включении пакета biblatex)
+**pages/titlepage.tex** — вёрстка титульного листа. Использует переменные из `config.tex`.
 
-**.vscode/settings.json** - конфигурация расширения LaTeX Workshop для VS Code с рецептами компиляции и правилами очистки вспомогательных файлов
+**pages/bibliography.tex** — вёрстка страницы со списком литературы. Подключается автоматически при включении флага `\bibtrue` в `config.tex`.
 
-## Быстрый старт
+**chapters/chapter1.tex** — шаблон содержимого с примером структуры (раздел, подраздел).
 
-1. Отредактируйте параметры документа в файле main.tex (строки 61-67):
+**references.bib** — файл для хранения источников в формате BibTeX.
+
+**.vscode/settings.json** — конфигурация LaTeX Workshop с рецептами компиляции и правилами очистки вспомогательных файлов.
+
+## Опциональные пакеты
+
+Управляются булевыми флагами в `config.tex`. По умолчанию все отключены.
+
+| Флаг | Включить | Пакеты |
+|---|---|---|
+| `\bibfalse` | `\bibtrue` | biblatex (список литературы) |
+| `\plotsfalse` | `\plotstrue` | pgfplots (графики) |
+| `\listingfalse` | `\listingtrue` | listings + xcolor (листинг кода) |
+
+### Библиография
+
+В `config.tex` установите `\bibtrue`, затем добавляйте источники в `references.bib`:
+
+```bibtex
+@book{key,
+  author = {Фамилия, Имя},
+  title  = {Название книги},
+  year   = {2025}
+}
+```
+
+В тексте ссылайтесь: `\cite{key}`.
+
+При включённой библиографии используйте рецепт компиляции **xelatex → biber → xelatex × 2**.
+
+## Как добавить новую главу
+
+1. Создайте `chapters/chapter2.tex`:
 
 ```latex
-\newcommand{\kafedraFirstString}{Название кафедры (строка 1)}
-\newcommand{\kafedraSecondString}{Название кафедры (строка 2)}
-\newcommand{\discipline}{Название дисциплины}
-\newcommand{\numberOfWork}{№1}  % номер лабораторной
-\newcommand{\topic}{Тема лабораторной работы}
-\newcommand{\teacher}{Фамилия И.О. преподавателя}
-\newcommand{\yearr}{2024 г.}
-```
-
-2. Добавьте содержимое в файл chapters/chapter1.tex или создайте новые главы
-
-3. При сохранении документ автоматически скомпилируется в PDF
-
-## LaTeX Рецепты компиляции
-
-Рецепт - это последовательность команд, которые выполняются для создания PDF. В шаблоне доступны следующие рецепты:
-
-### xelatex × 2 (по умолчанию)
-
-Компилирует документ два раза подряд с помощью XeLaTeX.
-
-```bash
-xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape main.tex
-xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape main.tex
-```
-
-Используйте этот рецепт если в документе есть оглавление, перекрёстные ссылки или гиперссылки. Первый проход собирает информацию, второй - обновляет оглавление и ссылки.
-
-### xelatex × 1
-
-Быстрый проход - одна компиляция с XeLaTeX:
-
-```bash
-xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape main.tex
-```
-
-Используйте для быстрой проверки черновика, когда оглавление не критично.
-
-### xelatex → biber → xelatex × 2
-
-Полный цикл компиляции с обработкой библиографии:
-
-```bash
-xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape main.tex
-biber main
-xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape main.tex
-xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape main.tex
-```
-
-Используйте этот рецепт ТОЛЬКО если вы включили пакет biblatex в main.tex.
-
-### pdflatex × 2
-
-Компиляция с помощью pdflatex (альтернатива XeLaTeX):
-
-```bash
-pdflatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex
-pdflatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex
-```
-
-Используйте если XeLaTeX не работает или недоступен.
-
-### pdflatex × 1
-
-Быстрая компиляция с pdflatex:
-
-```bash
-pdflatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex
-```
-
-## Как использовать шаблон
-
-### Редактирование содержимого
-
-Основное содержимое документа находится в файлах папки chapters/. Каждый файл должен содержать одну или несколько секций (\section) и подсекций (\subsection).
-
-Чтобы добавить новую главу:
-
-1. Создайте файл chapter2.tex в папке chapters/
-2. Напишите содержимое:
-
-```latex
-\section{Название второй главы}
+\section{Название раздела}
 
 \subsection{Подраздел}
 
 Ваш текст здесь...
 ```
 
-3. Подключите главу в main.tex после строки с \input{chapters/chapter1.tex}:
+2. Подключите в `main.tex` после уже существующих глав:
 
 ```latex
 \input{chapters/chapter2.tex}
 ```
 
-### Вставка изображений
+## Вставка изображений
 
-Все изображения должны находиться в папке images/. Для вставки используйте команду:
+Все изображения кладите в папку `images/`. Путь указывать без папки:
 
 ```latex
 \includegraphics[width=0.5\linewidth]{image_name.png}
 ```
 
-Путь относительный, начинается от корневой папки проекта.
+## Рецепты компиляции
 
-### Автоматическая компиляция
+### xelatex × 2 (по умолчанию)
 
-При сохранении файла в VS Code:
-1. Расширение LaTeX Workshop автоматически запускает выбранный рецепт компиляции
-2. PDF обновляется в отдельной вкладке VS Code
-3. После компиляции автоматически удаляются вспомогательные файлы (.aux, .log, .toc и т.д.)
+Два прохода XeLaTeX — нужны для корректного оглавления и ссылок.
 
-### Синхронизация кода и PDF (SyncTeX)
+```bash
+xelatex main.tex
+xelatex main.tex
+```
 
-После включения SyncTeX можно:
-- Двойной клик в PDF-просмотре перейдёт к соответствующему месту в коде
-- Правый клик в коде > "Go to PDF" перейдёт к соответствующему месту в PDF
+### xelatex × 1
+
+Быстрая проверка, когда оглавление не нужно.
+
+### xelatex → biber → xelatex × 2
+
+Используйте только при включённом флаге `\bibtrue` в `config.tex`.
+
+```bash
+xelatex main.tex
+biber main
+xelatex main.tex
+xelatex main.tex
+```
 
 ## Настройка шрифтов
 
-В preamble шаблона (строки 9-19) настроены шрифты для Linux:
+В `main.tex` настроены шрифты для Linux:
 
 ```latex
-\setmainfont{Liberation Serif}        % основной шрифт
-\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]  % моноширинный шрифт
+\setmainfont{Liberation Serif}
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 ```
 
-Если вы на Windows или macOS, раскомментируйте альтернативные строки:
+Для Windows/macOS раскомментируйте альтернативные строки в `main.tex`:
 
 ```latex
-% Для Windows/macOS
 \setmainfont{Times New Roman}
 \setmonofont{Courier New}
 ```
 
-## Подключение дополнительных возможностей
+## Настройки VS Code
 
-### Библиография (Biber + Biblatex)
+Ключевые параметры в `.vscode/settings.json`:
 
-Раскомментируйте строки 49-50 в main.tex:
-
-```latex
-\usepackage[backend=biber, style=gost-numeric, language=autobib, autolang=other]{biblatex}
-\addbibresource{references.bib}
-```
-
-Раскомментируйте также раздел вывода библиографии в конце документа (строки 174-188).
-
-Для компиляции используйте рецепт "xelatex → biber → xelatex × 2".
-
-Добавляйте источники в references.bib в формате:
-
-```bibtex
-@book{key,
-  author = {Фамилия, Имя},
-  title = {Название книги},
-  year = {2024}
-}
-```
-
-В документе ссылайтесь на источник: \cite{key}
-
-### Графики с PGFPlots
-
-Раскомментируйте строки 53-54:
-
-```latex
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-```
-
-### Вывод кода с подсветкой синтаксиса
-
-Раскомментируйте строки 57-58:
-
-```latex
-\usepackage{listings}
-\usepackage{xcolor}
-```
-
-## VS Code настройки
-
-Основные параметры расширения LaTeX Workshop в .vscode/settings.json:
-
-- `autoBuild.run: onSave` - компиляция при каждом сохранении файла
-- `autoClean.run: onBuilt` - автоматическая очистка вспомогательных файлов после компиляции
-- `view.pdf.viewer: tab` - отображение PDF в отдельной вкладке VS Code
-- `synctex.afterBuild.enabled: true` - синхронизация между кодом и PDF
-
-Все рецепты определены в параметре `latex.recipes`.
+- `autoBuild.run: onSave` — компиляция при каждом сохранении
+- `autoClean.run: onBuilt` — автоочистка вспомогательных файлов после компиляции
+- `view.pdf.viewer: tab` — PDF в отдельной вкладке
+- `synctex.afterBuild.enabled: true` — синхронизация кода и PDF (двойной клик в PDF переходит к строке в коде)
