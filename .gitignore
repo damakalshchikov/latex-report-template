@@ -94,9 +94,6 @@ _minted*
 # Latexmk
 *.fdb_latexmk
 
-# PDF результат
-*.pdf
-
 # VS Code
 .vscode/*
 !.vscode/settings.json
@@ -106,6 +103,3 @@ _minted*
 
 # JetBrains IDEs
 .idea/
-
-# AI
-CLAUDE.md
