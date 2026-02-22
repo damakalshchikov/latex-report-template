@@ -5,6 +5,10 @@
 % Шрифт всего документа - 12pt. Тип документа - статья
 \documentclass[12pt]{article}
 
+% Параметры документа (дисциплина, тема, преподаватель и т.п.)
+% Загружаем первым, чтобы флаги из config.tex были доступны в преамбуле
+\input{config}
+
 % Пакет для управления шрифтами
 \usepackage{fontspec} 
 % Шрифт по умолчанию
@@ -47,10 +51,12 @@
 \renewcommand{\cftdot}{.}
 \renewcommand{\cftsecdotsep}{\cftdotsep}
 
-% Пакет для библиографии
-% Для компиляции с библиографией используй рецепт: xelatex -> biber -> xelatex x2
-%\usepackage[backend=biber, style=gost-numeric, language=autobib, autolang=other]{biblatex}
-%\addbibresource{references.bib}
+% Пакет для библиографии (управляется флагом \ifbib в config.tex)
+% При включении компилируй по рецепту: xelatex -> biber -> xelatex x2
+\ifbib
+    \usepackage[backend=biber, style=gost-numeric, language=autobib, autolang=other]{biblatex}
+    \addbibresource{references.bib}
+\fi
 
 % Пакет для создания графиков
 %\usepackage{pgfplots}
@@ -60,9 +66,6 @@
 % Пакеты для листинга кода и его подсветки
 % \usepackage{listings}
 % \usepackage{xcolor}
-
-% Параметры документа (дисциплина, тема, преподаватель и т.п.)
-\input{config}
 
 % Начало документа
 \begin{document}
@@ -93,26 +96,10 @@
 
         \input{chapters/chapter1.tex}
 
-    % ==========================================
-    % БИБЛИОГРАФИЯ (раскомментируй при использовании)
-    % ==========================================
-    
-    % Страница с библиографией
-    %\cleardoublepage
-
-    % Делаем так, чтобы библиография появлялась независимо от ссылок
-    %\nocite{*}
-
-    % Выводим библиографию по центру
-    %\begin{center}
-	    %\printbibliography[heading=bibintoc, title={Список литературы}]
-    %\end{center}
-
-    % Отключаем нумерацию страницы
-    %\thispagestyle{empty}
-
-    % Конец страницы с библиографией
-    %\cleardoublepage
+    % Список литературы (управляется флагом \ifbib в config.tex)
+    \ifbib
+        \input{pages/bibliography}
+    \fi
 
 % Конец документа
 \end{document}
