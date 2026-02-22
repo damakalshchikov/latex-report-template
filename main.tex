@@ -65,10 +65,21 @@
 \newcommand{\kafedraFirstString}{...}
 \newcommand{\kafedraSecondString}{...}
 \newcommand{\discipline}{...}
-\newcommand{\numberOfWork}{№... }
+\newcommand{\workType}{...}
+\newcommand{\courseYear}{3}
+\newcommand{\levelEducation}{бакалавриата}
+\newcommand{\group}{ИДБ-23-14}
+\newcommand{\lastName}{Дамакальщикова}
+\newcommand{\firstName}{Михаила}
+\newcommand{\middleName}{Александровича}
 \newcommand{\topic}{...}
+\newcommand{\specialization}{09.03.03 Прикладная информатика}
+\newcommand{\trainingProfile}{Математическое и компьютерное моделирование процессов и систем}
+\newcommand{\dateSubmission}{}
+\newcommand{\monthSubmission}{}
+\newcommand{\yearSubmission}{}
 \newcommand{\teacher}{...}
-\newcommand{\yearr}{202... г.}
+\newcommand{\yearFooter}{...}
 
 % Начало документа
 \begin{document}
@@ -81,73 +92,119 @@
 	
     % Логотип вуза
     \begin{figure}
-	       \centering
-	       \includegraphics[width=0.4\linewidth]{logo.png}
+        \centering
+        \includegraphics[width=0.35\linewidth]{logo.png}
     \end{figure}
 	
     % Подпись под логотипом
     \begin{center}
-	       \textbf{МИНОБРНАУКИ РОССИИ} \\
-	       \textbf{Федеральное государственное автономное образовательное учреждение} \\
-	       \textbf{высшего образования} \\
-	       \textbf{«Московский государственный технологический университет «СТАНКИН»} \\
-	       \textbf{(ФГАОУ ВО «МГТУ «СТАНКИН»)}
-		
-	       % Разделительная линия
-	       \noindent \hrule
+        \textbf{МИНОБРНАУКИ РОССИИ} \\[2pt]
+        \textbf{Федеральное государственное автономное образовательное учреждение} \\
+        \textbf{высшего образования} \\
+        \textbf{«Московский государственный технологический университет «СТАНКИН»} \\
+        \textbf{(ФГАОУ ВО «МГТУ «СТАНКИН»)} \\[4pt]
+        % Разделительная линия
+        \hrule
     \end{center}
-	
+
     % Институт
     \noindent
-    \begin{minipage}{0.5\textwidth}
-	       \raggedright
-	       \textbf{Институт} \\
-	       \textbf{информационных} \\
-	       \textbf{технологий}
+    \begin{minipage}[t]{0.5\textwidth}
+        \raggedright
+        \textbf{Институт} \\
+        \textbf{информационных} \\
+        \textbf{технологий}
     \end{minipage}
     % Кафедра
     \hfill
-    \begin{minipage}{0.5\textwidth}
-	       \raggedleft
-	       \textbf{Кафедра} \\
-	       \textbf{\kafedraFirstString} \\
-	       \textbf{\kafedraSecondString}
+    \begin{minipage}[t]{0.5\textwidth}
+        \raggedleft
+        \textbf{Кафедра} \\
+        \textbf{\kafedraFirstString} \\
+        \textbf{\kafedraSecondString}
     \end{minipage}
     \vspace{1cm}
 	
     % Название работы
     \begin{center}
-	       Лабораторная работа \numberOfWork  по дисциплине \\ «\discipline»
+        Отчёт о выполнении \workType~работы по дисциплине \\[2pt] «\discipline»
     \end{center}
-    \vspace{1cm}
-	
+    \vspace{0.5cm}
+    % Кто выполнил работу
+    \begin{center}
+        Студента
+        \hspace{0.2ex}
+        \underline{\hspace{1ex}\textit{\courseYear}\hspace{1ex}}
+        \hspace{0.2ex}
+        курса
+        \begin{tabular}[t]{c}
+            \underline{\hspace{3ex}\textit{\levelEducation}\hspace{3ex}}
+            \\[-4pt]
+            {\tiny\textit{(уровень профессионального образования)}}
+        \end{tabular}
+        группы
+        \hspace{0.2ex}
+        \underline{\hspace{1ex}\textit{\group}\hspace{1ex}} \\[10pt]
+        % ФИО
+        \underline{\makebox[12cm]{\lastName~\firstName~\middleName}}
+    \end{center}
+    \vspace{0.5cm}
     % Тема работы
     \begin{center}
-	       Тема \\ «\topic»
+        На тему \\[3pt] \underline{\makebox[12cm]{\topic}}
     \end{center}
-    \vspace{3cm}
-	
-    % Выполнил
+    \vspace{2cm}
+    
+    % Направление и профиль подготовки
     \noindent
-    \begin{minipage}{0.5\textwidth}
-	       \raggedright
-	       Выполнил студент группы ИДБ-23-14: \\
-	       \centering
-	       Дамакальщиков М. А.
+    \begin{minipage}[t]{0.5\textwidth}
+        \raggedright
+        Направление: \\[5pt]
+        Профиль подготовки:
     \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \raggedleft
+        \specialization \\[5pt]
+        \trainingProfile
+    \end{minipage}
+    \vspace{1cm}
+
+    % Дата сдачи отчёта
+    \noindent
+    Отчёт сдан~~~«\underline{\makebox[4em]{\vphantom{\dateSubmission}}}»~~~\underline{\makebox[10em]{\vphantom{\monthSubmission}}}~~~20\underline{\makebox[2em]{\vphantom{\yearSubmission}}} г.
+
+    \vspace{0.5cm}
+
+    \noindent
+    % Оценка
+    Оценка:~~~\underline{\makebox[3cm]{\vphantom{text}}}
+
+    \vspace{0.5cm}
+
     % Преподаватель
-    \hfill
-    \begin{minipage}{0.5\textwidth}
-	       \raggedleft
-	       Проверил преподаватель: \\
-	       \teacher
+    \noindent
+    \begin{minipage}[t]{0.17\textwidth}
+        Преподаватель
     \end{minipage}
-    \vfill
+    \begin{minipage}[t]{0.7\textwidth}
+        \centering
+        \underline{\makebox[12cm]{\teacher}} \\
+        {\small\textit{(Ф.И.О., должность, степень, звание.)}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.1\textwidth}
+        \centering
+        \underline{\makebox[2cm]{\vphantom{\teacher}}} \\
+        {\small\textit{(подпись)}}
+    \end{minipage}
+    \vfil
 	
-    % Конец титульной страницы
+    % Колонтитул
+    \enlargethispage{3cm}
     \centering
-    \small Москва, \yearr
-	
+    \small Москва, \yearFooter~г.
+
+	% Конец титульной страницы
     \end{titlepage}
 
     % Содержание
