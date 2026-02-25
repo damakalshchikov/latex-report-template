@@ -22,7 +22,8 @@ latex-lab-template/
 │   └── logo.png             # Логотип университета
 ├── references.bib           # База данных источников литературы
 ├── .vscode/
-│   └── settings.json        # Настройки LaTeX Workshop
+│   ├── settings.json        # Настройки LaTeX Workshop
+│   └── keybindings.json     # Шорткаты для ручной компиляции
 ├── .gitignore
 └── README.md
 ```
@@ -42,6 +43,8 @@ latex-lab-template/
 **references.bib** — файл для хранения источников в формате BibTeX.
 
 **.vscode/settings.json** — конфигурация LaTeX Workshop с рецептами компиляции и правилами очистки вспомогательных файлов.
+
+**.vscode/keybindings.json** — справочник шорткатов для ручной компиляции. VS Code не подхватывает его автоматически — чтобы применить, скопируйте содержимое в `~/.config/Code/User/keybindings.json`.
 
 ## Опциональные пакеты
 
@@ -142,7 +145,7 @@ xelatex main.tex
 
 Ключевые параметры в `.vscode/settings.json`:
 
-- `autoBuild.run: onSave` — компиляция при каждом сохранении
-- `autoClean.run: onBuilt` — автоочистка вспомогательных файлов после компиляции
+- `autoBuild.run: never` — автокомпиляция отключена, сборка запускается вручную (`Ctrl+Alt+B`)
+- `autoClean.run: never` — вспомогательные файлы не очищаются (ускоряет повторную компиляцию; папка `build/` в `.gitignore`, поэтому в репозиторий они не попадают)
 - `view.pdf.viewer: tab` — PDF в отдельной вкладке
 - `synctex.afterBuild.enabled: true` — синхронизация кода и PDF (двойной клик в PDF переходит к строке в коде)

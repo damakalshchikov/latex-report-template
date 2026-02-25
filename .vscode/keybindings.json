@@ -1,0 +1,12 @@
+[
+    {
+        "key": "ctrl+alt+b",
+        "command": "latex-workshop.build",
+        "when": "editorLangId == latex"
+    },
+    {
+        "key": "ctrl+alt+r",
+        "command": "latex-workshop.recipes",
+        "when": "editorLangId == latex"
+    }
+]

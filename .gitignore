@@ -1,3 +1,6 @@
+# Директория сборки
+build/
+
 # LaTeX временные файлы
 *.aux
 *.lof
@@ -100,6 +103,7 @@ _minted*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/keybindings.json
 
 # JetBrains IDEs
 .idea/

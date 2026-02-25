@@ -1,14 +1,14 @@
 {
     // LaTeX Workshop настройки
     // Автокомпиляция при сохранении
-    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoBuild.run": "never",
     // Очистка вспомогательных файлов после сборки
-    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.autoClean.run": "never",
     // Открытие PDF во вкладке VS Code
     "latex-workshop.view.pdf.viewer": "tab",
-    // Включить SyncTeX (синхронизация между кодом и PDF)
+    // Включить SyncTeX
     "latex-workshop.synctex.afterBuild.enabled": true,
-    // ВАЖНО: Рецепты компиляции с ДВОЙНЫМ запуском для обновления содержания
+    // Рецепты компиляции
     "latex-workshop.latex.recipes": [
         {
             "name": "xelatex × 2",
@@ -56,6 +56,7 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "-shell-escape",
+                "-output-directory=%OUTDIR%",
                 "%DOC%"
             ],
             "env": {}
@@ -67,6 +68,7 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
+                "-output-directory=%OUTDIR%",
                 "%DOC%"
             ],
             "env": {}
@@ -75,13 +77,13 @@
             "name": "biber",
             "command": "biber",
             "args": [
-                "%DOCFILE%"
+                "%OUTDIR%/%DOCFILE%"
             ],
             "env": {}
         }
     ],
     // Использовать последний успешный рецепт по умолчанию
-    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.latex.recipe.default": "first",
     // Файлы для очистки
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux",
@@ -110,5 +112,7 @@
         "*.run.xml"
     ],
     // Включить автодополнение
-    "latex-workshop.intellisense.package.enabled": true
+    "latex-workshop.intellisense.package.enabled": true,
+    // Выходная директория для вспомогательных файлов и PDF
+    "latex-workshop.latex.outDir": "%DIR%/build"
 }
