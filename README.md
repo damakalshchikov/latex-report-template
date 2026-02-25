@@ -143,6 +143,6 @@ xelatex main.tex
 Ключевые параметры в `.vscode/settings.json`:
 
 - `autoBuild.run: onSave` — компиляция при каждом сохранении
-- `autoClean.run: onBuilt` — автоочистка вспомогательных файлов после компиляции
+- `autoClean.run: never` — вспомогательные файлы не очищаются (ускоряет повторную компиляцию; папка `build/` в `.gitignore`, поэтому в репозиторий они не попадают)
 - `view.pdf.viewer: tab` — PDF в отдельной вкладке
 - `synctex.afterBuild.enabled: true` — синхронизация кода и PDF (двойной клик в PDF переходит к строке в коде)
