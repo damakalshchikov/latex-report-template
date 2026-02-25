@@ -83,7 +83,7 @@
         }
     ],
     // Использовать последний успешный рецепт по умолчанию
-    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.latex.recipe.default": "first",
     // Файлы для очистки
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux",
