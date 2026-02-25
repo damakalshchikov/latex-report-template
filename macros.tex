@@ -1,0 +1,15 @@
+% ==========================================
+% СОБСТВЕННЫЕ КОМАНДЫ
+% ==========================================
+
+% Секция без нумерации
+\newcommand{\unnsection}[1]{
+    \section*{#1}
+    \addcontentsline{toc}{section}{#1}
+}
+
+% Подсекция без нумерации
+\newcommand{\unnsubsection}[1]{
+    \subsection*{#1}
+    \addcontentsline{toc}{subsection}{#1}
+}
