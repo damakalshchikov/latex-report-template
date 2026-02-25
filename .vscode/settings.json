@@ -1,7 +1,7 @@
 {
     // LaTeX Workshop настройки
     // Автокомпиляция при сохранении
-    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoBuild.run": "never",
     // Очистка вспомогательных файлов после сборки
     "latex-workshop.latex.autoClean.run": "never",
     // Открытие PDF во вкладке VS Code

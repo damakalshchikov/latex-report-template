@@ -103,6 +103,7 @@ _minted*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/keybindings.json
 
 # JetBrains IDEs
 .idea/
