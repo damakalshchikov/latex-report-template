@@ -10,66 +10,105 @@
 \input{config}
 \input{macros.tex}
 
-% Пакет для управления шрифтами
+% ==========================================
+% ШРИФТЫ И ЯЗЫКИ
+% ==========================================
+
+% Управление шрифтами
 \usepackage{fontspec}
-% Шрифт по умолчанию
+% Основной шрифт документа
 \setmainfont{Liberation Serif}
 % \setmainfont{Times New Roman}  % для Windows/macOS
 % \setmainfont{Liberation Serif} % для Linux
 
-% Шрифт для листинга кода
+% Моноширинный шрифт (для листингов кода)
 \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
-% Альтернативы:
 % \setmonofont{Courier New}      % для Windows/macOS
 % \setmonofont{Liberation Mono}  % для Linux
 
-% Пакет для работы с языками
+% Поддержка многоязычных документов (русский + английский)
 \usepackage{polyglossia}
-% Язык документа по умолчанию - русский
 \setdefaultlanguage{russian}
-% Дополнительный язык
 \setotherlanguage{english}
 
-% Пакет для использования запятой в качестве разделителя в дробных числах
+% ==========================================
+% МАТЕМАТИКА
+% ==========================================
+
+% Расширенные математические формулы и окружения
+\usepackage{amsmath}
+
+% Запятая как разделитель дробной части (вместо точки)
 \usepackage{icomma}
 
-% Пакет для регулирования полей
-\usepackage[a4paper, margin=2cm]{geometry}
+% ==========================================
+% ГРАФИКА И ЦВЕТА
+% ==========================================
 
-% Пакет для вставки изображений
+% Вставка и масштабирование изображений
 \usepackage{graphicx}
-% Указываем путь к изображениям
+% Путь к изображениям
 \graphicspath{{./images/}}
 
-% Пакет для ссылок в документе
-\usepackage{hyperref}
+% Подрисунки (несколько изображений в одном окружении figure)
+\usepackage{subcaption}
 
-% Улучшения для оглавлений/закладок PDF
+% Поддержка цветов
+\usepackage{xcolor}
+
+% ==========================================
+% РАЗМЕТКА СТРАНИЦЫ
+% ==========================================
+
+% Настройка полей документа
+\usepackage[a4paper, margin=2cm]{geometry}
+
+% ==========================================
+% PDF И ССЫЛКИ
+% ==========================================
+
+% Кликабельные ссылки в PDF
+\usepackage[colorlinks=true, urlcolor=blue, linkcolor=black, citecolor=black]{hyperref}
+
+% Улучшенное управление закладками PDF
 \usepackage{bookmark}
 
-% Пакет для разделительных символов в содержании
+% ==========================================
+% СОДЕРЖАНИЕ
+% ==========================================
+
+% Настройка отображения содержания (точки между заголовком и номером страницы)
 \usepackage{tocloft}
 \renewcommand{\cftdot}{.}
 \renewcommand{\cftsecdotsep}{\cftdotsep}
 
-% Пакет для библиографии (управляется флагом \ifbib в config.tex)
-% При включении компилируй по рецепту: xelatex -> biber -> xelatex x2
+% ==========================================
+% ОПЦИОНАЛЬНЫЕ ПАКЕТЫ
+% Управляются флагами в config.tex
+% ==========================================
+
+% Библиография в стиле ГОСТ (флаг \bibtrue)
 \ifbib
     \usepackage[backend=biber, style=gost-numeric, language=autobib, autolang=other]{biblatex}
     \addbibresource{references.bib}
 \fi
 
-% Пакет для создания графиков (управляется флагом \ifplots в config.tex)
+% Графики и диаграммы (флаг \plotstrue)
 \ifplots
     \usepackage{pgfplots}
     \pgfplotsset{compat=1.18}
     \pgfplotsset{/pgf/number format/use comma}
 \fi
 
-% Пакеты для листинга кода (управляется флагом \iflisting в config.tex)
+% Листинги кода с подсветкой синтаксиса (флаг \listingtrue)
 \iflisting
-    \usepackage{listings}
-    \usepackage{xcolor}
+    \usepackage{minted}
+    \setminted{
+        fontsize=\small,
+        linenos=true,
+        breaklines=true,
+        frame=single
+    }
 \fi
 
 % Начало документа
@@ -92,7 +131,7 @@
     % Нумерация с 3-его номера
     \pagenumbering{arabic}
     \setcounter{page}{3}
-	
+
     % ==========================================
     % СОДЕРЖАНИЕ ОТЧЁТА
     % ==========================================
