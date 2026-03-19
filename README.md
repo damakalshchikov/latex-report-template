@@ -92,7 +92,17 @@ plt.savefig("figures/plot.pdf", bbox_inches="tight")
 
 Key parameters in `.vscode/settings.json`:
 
+**LaTeX Workshop:**
+
 - `autoBuild.run: never` — auto-compilation disabled, build manually (`Ctrl+Alt+B`)
 - `autoClean.run: never` — auxiliary files are not cleaned after build (speeds up recompilation; the `build/` directory is in `.gitignore`)
 - `view.pdf.viewer: tab` — PDF opens in a VS Code tab
 - `synctex.afterBuild.enabled: true` — syncs source and PDF
+
+**LTeX+** (spell and grammar checking):
+
+- `ltex.language: ru-RU` — Russian spell checking
+- `ltex.enabled: [latex, bibtex]` — enabled for `.tex` and `.bib` files
+- `ltex.latex.environments` — code listings and math environments are ignored
+- `ltex.latex.commands` — custom template commands are ignored
+- `ltex.additionalRules.motherTongue: ru-RU` — improves Russian grammar checking

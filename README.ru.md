@@ -90,7 +90,17 @@ plt.savefig("figures/plot.pdf", bbox_inches="tight")
 
 Ключевые параметры в `.vscode/settings.json`:
 
+**LaTeX Workshop:**
+
 - `autoBuild.run: never` — автокомпиляция отключена, сборка запускается вручную (`Ctrl+Alt+B`)
 - `autoClean.run: never` — вспомогательные файлы не очищаются (ускоряет повторную компиляцию; папка `build/` в `.gitignore`, поэтому в репозиторий они не попадают)
 - `view.pdf.viewer: tab` — PDF в отдельной вкладке
 - `synctex.afterBuild.enabled: true` — синхронизация кода и PDF
+
+**LTeX+** (проверка орфографии и грамматики):
+
+- `ltex.language: ru-RU` — проверка на русском языке
+- `ltex.enabled: [latex, bibtex]` — включён для файлов `.tex` и `.bib`
+- `ltex.latex.environments` — листинги кода и математические окружения игнорируются
+- `ltex.latex.commands` — кастомные команды шаблона игнорируются
+- `ltex.additionalRules.motherTongue: ru-RU` — улучшает проверку русской грамматики
