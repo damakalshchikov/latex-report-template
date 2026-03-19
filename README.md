@@ -53,8 +53,9 @@ latex-lab-template/
 | Флаг | Включить | Пакеты |
 |---|---|---|
 | `\bibfalse` | `\bibtrue` | biblatex (список литературы) |
-| `\plotsfalse` | `\plotstrue` | pgfplots (графики) |
-| `\listingfalse` | `\listingtrue` | listings + xcolor (листинг кода) |
+| `\plotsfalse` | `\plotstrue` | pgfplots (графики функций) |
+| `\tikzfalse` | `\tikztrue` | tikz (схемы и диаграммы) |
+| `\listingfalse` | `\listingtrue` | minted (листинг кода) |
 
 ### Библиография
 

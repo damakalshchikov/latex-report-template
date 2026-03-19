@@ -106,11 +106,17 @@
     \addbibresource{references.bib}
 \fi
 
-% Графики и диаграммы (флаг \plotstrue)
+% Графики функций (флаг \plotstrue)
 \ifplots
     \usepackage{pgfplots}
     \pgfplotsset{compat=1.18}
     \pgfplotsset{/pgf/number format/use comma}
+\fi
+
+% Схемы и диаграммы (флаг \tikztrue)
+\iftikz
+    \usepackage{tikz}
+    \usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc}
 \fi
 
 % Листинги кода с подсветкой синтаксиса (флаг \listingtrue)
