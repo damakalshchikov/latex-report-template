@@ -1,6 +1,6 @@
 # $\LaTeX$ template for lab and seminar reports
 
-A ready-to-use template for academic reports. Configured for $XeLaTeX$.
+A ready-to-use template for academic reports. Configured for $XeLaTeX$. Here is an example of a [compiled template](main.pdf).
 
 [English](README.md) | [Русский](README.ru.md)
 
