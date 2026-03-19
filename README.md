@@ -1,20 +1,22 @@
 # $\LaTeX$ template for lab and seminar reports
 
-A ready-to-use template for academic reports. Configured for $XeLaTeX$. Here is an example of a [compiled template](main.pdf).
+A ready-to-use template for academic reports. Configured for VS Code. Here is an example of a [compiled template](main.pdf).
 
 [English](README.md) | [Русский](README.ru.md)
 
 ## Requirements
 
-- $XeLaTeX$
-- VS Code with LaTeX Workshop extension
+- XeLaTeX
+- VS Code
+- LaTeX Workshop
+- LTeX+ (опционально)
 
 ## File Structure
 
 ```
 latex-lab-template/
 ├──.vscode/                  # Editor configuration directory
-│   ├── settings.json            # LaTeX Workshop settings
+│   ├── settings.json            # LaTeX Workshop and LTex+ settings
 │   └── keybindings.json         # Shortcuts for manual compilation
 ├── chapters/                # Directory with report content files
 │   └── chapter1.tex             # Example file

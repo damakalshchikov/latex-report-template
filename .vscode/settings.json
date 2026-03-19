@@ -1,5 +1,6 @@
 {
     // LaTeX Workshop настройки
+
     // Автокомпиляция при сохранении
     "latex-workshop.latex.autoBuild.run": "never",
     // Очистка вспомогательных файлов после сборки
@@ -114,5 +115,48 @@
     // Включить автодополнение
     "latex-workshop.intellisense.package.enabled": true,
     // Выходная директория для вспомогательных файлов и PDF
-    "latex-workshop.latex.outDir": "%DIR%/build"
+    "latex-workshop.latex.outDir": "%DIR%/build",
+
+    // LTeX+ настройки
+
+    "ltex.language": "ru-RU",
+    "ltex.enabled": [
+        "latex",
+        "bibtex"
+    ],
+    // Игнорировать окружения с кодом и формулами
+    "ltex.latex.environments": {
+        "minted": "ignore",
+        "lstlisting": "ignore",
+        "verbatim": "ignore",
+        "equation": "ignore",
+        "equation*": "ignore",
+        "align": "ignore",
+        "align*": "ignore"
+    },
+    // Обработка кастомных команд шаблона
+    "ltex.latex.commands": {
+        // Команды с нетекстовыми аргументами - игнорировать
+        "\\setmainfont{}": "ignore",
+        "\\setmonofont{}": "ignore",
+        "\\setdefaultlanguage{}": "ignore",
+        "\\setotherlanguage{}": "ignore",
+        "\\graphicspath{}": "ignore",
+        "\\addbibresource{}": "ignore",
+        "\\kafedraFirstString{}": "ignore",
+        "\\kafedraSecondString{}": "ignore",
+        "\\discipline{}": "ignore",
+        "\\workType{}": "ignore",
+        "\\group{}": "ignore",
+        "\\lastName{}": "ignore",
+        "\\firstName{}": "ignore",
+        "\\middleName{}": "ignore",
+        "\\topic{}": "ignore",
+        "\\specialization{}": "ignore",
+        "\\trainingProfile{}": "ignore",
+        "\\teacher{}": "ignore",
+        "\\yearFooter{}": "ignore"
+    },
+    // Переключение языка через polyglossia
+    "ltex.additionalRules.motherTongue": "ru-RU"
 }

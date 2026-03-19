@@ -1,20 +1,22 @@
 # $\LaTeX$ шаблон для отчётов о лабораторных и семинарских работах
 
-Готовый шаблон для оформления отчётов. Настроен для работы с $XeLaTeX$. Вот пример [скомпилированного шаблона](main.pdf).
+Готовый шаблон для оформления отчётов. Настроен для работы с VS Code. Вот пример [скомпилированного шаблона](main.pdf).
 
 [English](README.md) | [Русский](README.ru.md)
 
 ## Требования
 
-- $XeLaTeX$
-- VS Code с расширением LaTeX Workshop
+- XeLaTeX
+- VS Code
+- LaTeX Workshop
+- LTeX+ (optional)
 
 ## Файловая структура
 
 ```
 latex-lab-template/
-├──.vscode/                  # Каталог с настройками
-│   ├── settings.json            # Настройки LaTeX Workshop
+├──.vscode/                  # Каталог с настройками 
+│   ├── settings.json            # Настройки LaTeX Workshop и LTeX+
 │   └── keybindings.json         # Шорткаты для ручной компиляции
 ├── chapters/                # Каталог с частями, из которых состоит отчёт
 │   └── chapter1.tex             # Файл в качестве примера
