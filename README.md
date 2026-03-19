@@ -1,92 +1,96 @@
-# $\LaTeX$ шаблон для отчётов о лабораторных и семинарских работах
+# $\LaTeX$ template for lab and seminar reports
 
-Готовый шаблон для оформления отчётов. Настроен для работы с $XeLaTeX$.
+A ready-to-use template for academic reports. Configured for $XeLaTeX$.
 
-## Требования
+[English](README.md) | [Русский](README.ru.md)
+
+## Requirements
 
 - $XeLaTeX$
-- VS Code с расширением LaTeX Workshop
+- VS Code with LaTeX Workshop extension
 
-## Файловая структура
+## File Structure
 
 ```
 latex-lab-template/
-├──.vscode/                  # Каталог с настройками
-│   ├── settings.json            # Настройки LaTeX Workshop
-│   └── keybindings.json         # Шорткаты для ручной компиляции
-├── chapters/                # Каталог с частями, из которых состоит отчёт
-│   └── chapter1.tex             # Файл в качестве примера
-├── figures/                 # Каталог с графиками функций, схемами и т. п.
-├── images/                  # Каталог с различными изображениями
-│   └── logo.png                 # Логотип университета
-├── pages/                   # Каталог со статичными страницами
-│   ├── titlepage.tex            # Титульная страница
-│   └── bibliography.tex         # Страница со списком используемой литературы
+├──.vscode/                  # Editor configuration directory
+│   ├── settings.json            # LaTeX Workshop settings
+│   └── keybindings.json         # Shortcuts for manual compilation
+├── chapters/                # Directory with report content files
+│   └── chapter1.tex             # Example file
+├── figures/                 # Directory with plots, charts, diagrams, etc.
+├── images/                  # Directory with various images
+│   └── logo.png                 # University logo
+├── pages/                   # Directory with static pages
+│   ├── titlepage.tex            # Title page
+│   └── bibliography.tex         # Bibliography page
 ├──.gitignore
-├── config.tex               # Параметры конкретной работы
-├── macros.tex               # Собственные команды
-├── main.tex                 # Преамбула и структура документа
+├── config.tex               # Document parameters
+├── macros.tex               # Custom commands
+├── main.tex                 # Preamble and document structure
 ├── README.md
-└── references.bib           # База данных источников литературы
+└── references.bib           # BibTeX source database
 ```
 
-## Опциональные пакеты
+## Optional Packages
 
-Управляются булевыми флагами в `config.tex`. По умолчанию все отключены.
+Controlled by boolean flags in `config.tex`. All disabled by default.
 
-| Флаг | Включить | Пакеты |
+| Flag | Enable | Packages |
 |---|---|---|
-| `\bibfalse` | `\bibtrue` | biblatex (список литературы) |
-| `\plotsfalse` | `\plotstrue` | pgfplots (графики функций) |
-| `\tikzfalse` | `\tikztrue` | tikz (схемы и диаграммы) |
-| `\listingfalse` | `\listingtrue` | minted (листинг кода) |
+| `\bibfalse` | `\bibtrue` | biblatex (bibliography) |
+| `\plotsfalse` | `\plotstrue` | pgfplots (function plots) |
+| `\tikzfalse` | `\tikztrue` | tikz (diagrams and flowcharts) |
+| `\listingfalse` | `\listingtrue` | minted (code listings) |
 
-## Библиография
+## Bibliography
 
-В `config.tex` установите `\bibtrue`, затем добавляйте источники в `references.bib`:
+Set `\bibtrue` in `config.tex`, then add sources to `references.bib`:
 
 ```bibtex
 @book{key,
-  author = {Фамилия, Имя},
-  title  = {Название книги},
+  author = {Last, First},
+  title  = {Book Title},
   year   = {2025}
 }
 ```
 
-В тексте ссылайтесь: `\cite{key}`.
+Cite in text with `\cite{key}`.
 
-При включённой библиографии используйте рецепт компиляции **xelatex $\to$ biber $\to$ xelatex $\times$ 2**.
+When bibliography is enabled, use the **xelatex $\to$ biber $\to$ xelatex $\times$ 2** compilation recipe.
 
-## Вставка изображений
+## Inserting Images
 
-Изображения распределены по двум каталогам:
+Images are split across two directories:
 
-- `images/` — статичные изображения (логотип, скриншоты, фото)
-- `figures/` — графики и схемы (желательно в формате PNG или PDF)
+- `images/` — static images (logo, screenshots, photos)
+- `figures/` — plots and diagrams (preferably PDF or PNG)
 
-Путь к файлу указывайте без каталога:
+Specify the file path without the directory:
+
 ```latex
 \includegraphics[width=0.5\linewidth]{image_name.png}
 ```
 
-Для графиков желательно использовать PDF:
+It is advisable to use PDF for plots:
+
 ```python
 plt.savefig("figures/plot.pdf", bbox_inches="tight")
 ```
 
-## Рецепты компиляции
+## Compilation Recipes
 
-| Рецепт | Когда использовать |
+| Recipe | When to use |
 |---|---|
-| xelatex $\times$ 2 | По умолчанию — два прохода для корректного оглавления и ссылок |
-| xelatex $\times$ 1 | Быстрая проверка, когда оглавление не нужно |
-| xelatex $\to$ biber $\to$ xelatex $\times$ 2 | Только при включённом флаге `\bibtrue` в `config.tex` |
+| xelatex $\times$ 2 | Default — two passes for correct TOC and references |
+| xelatex $\times$ 1 | Quick check when TOC is not needed |
+| xelatex $\to$ biber $\to$ xelatex $\times$ 2 | Only when `\bibtrue` is set in `config.tex` |
 
-## Настройки VS Code
+## VS Code Settings
 
-Ключевые параметры в `.vscode/settings.json`:
+Key parameters in `.vscode/settings.json`:
 
-- `autoBuild.run: never` — автокомпиляция отключена, сборка запускается вручную (`Ctrl+Alt+B`)
-- `autoClean.run: never` — вспомогательные файлы не очищаются (ускоряет повторную компиляцию; папка `build/` в `.gitignore`, поэтому в репозиторий они не попадают)
-- `view.pdf.viewer: tab` — PDF в отдельной вкладке
-- `synctex.afterBuild.enabled: true` — синхронизация кода и PDF
+- `autoBuild.run: never` — auto-compilation disabled, build manually (`Ctrl+Alt+B`)
+- `autoClean.run: never` — auxiliary files are not cleaned after build (speeds up recompilation; the `build/` directory is in `.gitignore`)
+- `view.pdf.viewer: tab` — PDF opens in a VS Code tab
+- `synctex.afterBuild.enabled: true` — syncs source and PDF
