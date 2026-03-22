@@ -93,7 +93,7 @@ plt.savefig("figures/plot.pdf", bbox_inches="tight")
 **LaTeX Workshop:**
 
 - `autoBuild.run: never` — автокомпиляция отключена, сборка запускается вручную (`Ctrl+Alt+B`)
-- `autoClean.run: never` — вспомогательные файлы не очищаются (ускоряет повторную компиляцию; папка `build/` в `.gitignore`, поэтому в репозиторий они не попадают)
+- `autoClean.run: never` — вспомогательные файлы не очищаются (ускоряет повторную компиляцию; каталог `build/` в `.gitignore`, поэтому в репозиторий они не попадают)
 - `view.pdf.viewer: tab` — PDF в отдельной вкладке
 - `synctex.afterBuild.enabled: true` — синхронизация кода и PDF
 
