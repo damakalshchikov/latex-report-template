@@ -9,7 +9,7 @@
 - XeLaTeX
 - VS Code
 - LaTeX Workshop
-- LTeX+ (optional)
+- LTeX+ (опционально)
 
 ## Файловая структура
 
