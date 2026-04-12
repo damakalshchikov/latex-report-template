@@ -9,7 +9,7 @@ A ready-to-use template for academic reports. Configured for VS Code. Here is an
 - XeLaTeX
 - VS Code
 - LaTeX Workshop
-- LTeX+ (опционально)
+- LTeX+ (optional)
 
 ## File Structure
 
