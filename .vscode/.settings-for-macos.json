@@ -1,0 +1,162 @@
+{
+    // LaTeX Workshop настройки
+
+    // Автокомпиляция при сохранении
+    "latex-workshop.latex.autoBuild.run": "never",
+    // Очистка вспомогательных файлов после сборки
+    "latex-workshop.latex.autoClean.run": "never",
+    // Открытие PDF во вкладке VS Code
+    "latex-workshop.view.pdf.viewer": "tab",
+    // Включить SyncTeX
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    // Рецепты компиляции
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex x 2",
+            "tools": [
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "xelatex x 1",
+            "tools": [
+                "xelatex"
+            ]
+        },
+        {
+            "name": "xelatex -> biber -> xelatex x 2",
+            "tools": [
+                "xelatex",
+                "biber",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "pdflatex x 2",
+            "tools": [
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "pdflatex x 1",
+            "tools": [
+                "pdflatex"
+            ]
+        }
+    ],
+    // Инструменты компиляции
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "/Library/TeX/texbin/xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-shell-escape",
+                "-output-directory=%DIR%/build",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdflatex",
+            "command": "/Library/TeX/texbin/pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%DIR%/build",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "biber",
+            "command": "/Library/TeX/texbin/biber",
+            "args": [
+                "%DIR%/build/%DOCFILE%"
+            ],
+            "env": {}
+        }
+    ],
+    // Использовать последний успешный рецепт по умолчанию
+    "latex-workshop.latex.recipe.default": "first",
+    // Файлы для очистки
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.snm",
+        "*.synctex(busy)",
+        "*.synctex.gz(busy)",
+        "*.nav",
+        "*.bcf",
+        "*.run.xml"
+    ],
+    // Включить автодополнение
+    "latex-workshop.intellisense.package.enabled": true,
+    // Выходная директория для вспомогательных файлов и PDF
+    "latex-workshop.latex.outDir": "%DIR%/build",
+
+    // LTeX+ настройки
+
+    "ltex.language": "ru-RU",
+    "ltex.enabled": [
+        "latex",
+        "bibtex"
+    ],
+    // Игнорировать окружения с кодом и формулами
+    "ltex.latex.environments": {
+        "minted": "ignore",
+        "lstlisting": "ignore",
+        "verbatim": "ignore",
+        "equation": "ignore",
+        "equation*": "ignore",
+        "align": "ignore",
+        "align*": "ignore"
+    },
+    // Обработка кастомных команд шаблона
+    "ltex.latex.commands": {
+        // Команды с нетекстовыми аргументами - игнорировать
+        "\\setmainfont{}": "ignore",
+        "\\setmonofont{}": "ignore",
+        "\\setdefaultlanguage{}": "ignore",
+        "\\setotherlanguage{}": "ignore",
+        "\\graphicspath{}": "ignore",
+        "\\addbibresource{}": "ignore",
+        "\\kafedraFirstString{}": "ignore",
+        "\\kafedraSecondString{}": "ignore",
+        "\\discipline{}": "ignore",
+        "\\workType{}": "ignore",
+        "\\group{}": "ignore",
+        "\\lastName{}": "ignore",
+        "\\firstName{}": "ignore",
+        "\\middleName{}": "ignore",
+        "\\topic{}": "ignore",
+        "\\specialization{}": "ignore",
+        "\\trainingProfile{}": "ignore",
+        "\\teacher{}": "ignore",
+        "\\yearFooter{}": "ignore"
+    },
+    // Переключение языка через polyglossia
+    "ltex.additionalRules.motherTongue": "ru-RU"
+}

@@ -99,11 +99,12 @@ _minted*
 
 # VS Code
 .vscode/*
-!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/keybindings.json
+!.vscode/.settings-for-linux.json
+!.vscode/.settings-for-macos.json
 
 # JetBrains IDEs
 .idea/

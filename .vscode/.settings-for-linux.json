@@ -12,20 +12,20 @@
     // Рецепты компиляции
     "latex-workshop.latex.recipes": [
         {
-            "name": "xelatex × 2",
+            "name": "xelatex x 2",
             "tools": [
                 "xelatex",
                 "xelatex"
             ]
         },
         {
-            "name": "xelatex × 1",
+            "name": "xelatex x 1",
             "tools": [
                 "xelatex"
             ]
         },
         {
-            "name": "xelatex → biber → xelatex × 2",
+            "name": "xelatex -> biber -> xelatex x 2",
             "tools": [
                 "xelatex",
                 "biber",
@@ -34,14 +34,14 @@
             ]
         },
         {
-            "name": "pdflatex × 2",
+            "name": "pdflatex x 2",
             "tools": [
                 "pdflatex",
                 "pdflatex"
             ]
         },
         {
-            "name": "pdflatex × 1",
+            "name": "pdflatex x 1",
             "tools": [
                 "pdflatex"
             ]
