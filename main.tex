@@ -1,5 +1,3 @@
-% Указываем VS Code использовать XeLaTeX
-% !TEX program = xelatex
 \PassOptionsToPackage{pdfpagelabels=false}{hyperref}
 
 % Шрифт всего документа - 12pt. Тип документа - статья
@@ -16,15 +14,11 @@
 
 % Управление шрифтами
 \usepackage{fontspec}
-% Основной шрифт документа
-\setmainfont{Liberation Serif}
-% \setmainfont{Times New Roman}  % для Windows/macOS
-% \setmainfont{Liberation Serif} % для Linux
+% Основной шрифт документа (задаётся в config.tex)
+\setmainfont{\mainfont}
 
-% Моноширинный шрифт (для листингов кода)
-\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
-% \setmonofont{Courier New}      % для Windows/macOS
-% \setmonofont{Liberation Mono}  % для Linux
+% Моноширинный шрифт (для листингов кода, задаётся в config.tex)
+\setmonofont{\monofont}
 
 % Поддержка многоязычных документов (русский + английский)
 \usepackage{polyglossia}
