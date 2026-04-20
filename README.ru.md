@@ -15,23 +15,25 @@
 
 ```
 latex-lab-template/
-├──.vscode/                  # Каталог с настройками 
-│   ├── settings.json            # Настройки LaTeX Workshop и LTeX+
-│   └── keybindings.json         # Шорткаты для ручной компиляции
-├── chapters/                # Каталог с частями, из которых состоит отчёт
-│   └── chapter1.tex             # Файл в качестве примера
-├── figures/                 # Каталог с графиками функций, схемами и т. п.
-├── images/                  # Каталог с различными изображениями
-│   └── logo.png                 # Логотип университета
-├── pages/                   # Каталог со статичными страницами
-│   ├── titlepage.tex            # Титульная страница
-│   └── bibliography.tex         # Страница со списком используемой литературы
+├──.vscode/                          # Каталог с настройками
+│   ├── .settings-for-linux.json         # Шаблон настроек для Linux
+│   ├── .settings-for-macos.json         # Шаблон настроек для macOS
+│   ├── keybindings.json                 # Шорткаты для ручной компиляции
+│   └── settings.json                    # Локальные настройки (не отслеживаются git)
+├── chapters/                        # Каталог с частями, из которых состоит отчёт
+│   └── chapter1.tex                     # Файл в качестве примера
+├── figures/                         # Каталог с графиками функций, схемами и т. п.
+├── images/                          # Каталог с различными изображениями
+│   └── logo.png                         # Логотип университета
+├── pages/                           # Каталог со статичными страницами
+│   ├── titlepage.tex                    # Титульная страница
+│   └── bibliography.tex                 # Страница со списком используемой литературы
 ├──.gitignore
-├── config.tex               # Параметры конкретной работы
-├── macros.tex               # Собственные команды
-├── main.tex                 # Преамбула и структура документа
+├── config.tex                       # Параметры документа и шрифты
+├── macros.tex                       # Собственные команды
+├── main.tex                         # Преамбула и структура документа
 ├── README.md
-└── references.bib           # База данных источников литературы
+└── references.bib                   # База данных источников литературы
 ```
 
 ## Опциональные пакеты
@@ -59,7 +61,7 @@ latex-lab-template/
 
 В тексте ссылайтесь: `\cite{key}`.
 
-При включённой библиографии используйте рецепт компиляции **xelatex $\to$ biber $\to$ xelatex $\times$ 2**.
+При включённой библиографии используйте рецепт компиляции **xelatex -> biber -> xelatex x 2**.
 
 ## Вставка изображений
 
@@ -82,13 +84,32 @@ plt.savefig("figures/plot.pdf", bbox_inches="tight")
 
 | Рецепт | Когда использовать |
 |---|---|
-| xelatex $\times$ 2 | По умолчанию — два прохода для корректного оглавления и ссылок |
-| xelatex $\times$ 1 | Быстрая проверка, когда оглавление не нужно |
-| xelatex $\to$ biber $\to$ xelatex $\times$ 2 | Только при включённом флаге `\bibtrue` в `config.tex` |
+| xelatex x 2 | По умолчанию — два прохода для корректного оглавления и ссылок |
+| xelatex x 1 | Быстрая проверка, когда оглавление не нужно |
+| xelatex -> biber -> xelatex x 2 | Только при включённом флаге `\bibtrue` в `config.tex` |
+
+## Шрифты
+
+Шрифты задаются в `config.tex`:
+
+```latex
+\newcommand{\mainfont}{Times New Roman}  % для Windows/macOS
+% \newcommand{\mainfont}{Liberation Serif}  % для Linux
+
+\newcommand{\monofont}{Courier New}      % для Windows/macOS
+% \newcommand{\monofont}{Liberation Mono}   % для Linux
+```
+
+На Linux раскомментируйте строки для Linux и закомментируйте строки для Windows/macOS.
 
 ## Настройки VS Code
 
-Ключевые параметры в `.vscode/settings.json`:
+`settings.json` не отслеживается git — каждый пользователь создаёт его локально, скопировав нужный шаблон из `.vscode/`:
+
+- `.settings-for-linux.json` — для Linux
+- `.settings-for-macos.json` — для macOS
+
+Ключевые параметры:
 
 **LaTeX Workshop:**
 
