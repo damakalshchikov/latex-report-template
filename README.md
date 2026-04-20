@@ -15,23 +15,25 @@ A ready-to-use template for academic reports. Configured for VS Code. Here is an
 
 ```
 latex-lab-template/
-├──.vscode/                  # Editor configuration directory
-│   ├── settings.json            # LaTeX Workshop and LTex+ settings
-│   └── keybindings.json         # Shortcuts for manual compilation
-├── chapters/                # Directory with report content files
-│   └── chapter1.tex             # Example file
-├── figures/                 # Directory with plots, charts, diagrams, etc.
-├── images/                  # Directory with various images
-│   └── logo.png                 # University logo
-├── pages/                   # Directory with static pages
-│   ├── titlepage.tex            # Title page
-│   └── bibliography.tex         # Bibliography page
+├──.vscode/                          # Editor configuration directory
+│   ├── .settings-for-linux.json         # Settings template for Linux
+│   ├── .settings-for-macos.json         # Settings template for macOS
+│   ├── keybindings.json                 # Shortcuts for manual compilation
+│   └── settings.json                    # Your local settings (not tracked by git)
+├── chapters/                        # Directory with report content files
+│   └── chapter1.tex                     # Example file
+├── figures/                         # Directory with plots, charts, diagrams, etc.
+├── images/                          # Directory with various images
+│   └── logo.png                         # University logo
+├── pages/                           # Directory with static pages
+│   ├── titlepage.tex                    # Title page
+│   └── bibliography.tex                 # Bibliography page
 ├──.gitignore
-├── config.tex               # Document parameters
-├── macros.tex               # Custom commands
-├── main.tex                 # Preamble and document structure
+├── config.tex                       # Document parameters and fonts
+├── macros.tex                       # Custom commands
+├── main.tex                         # Preamble and document structure
 ├── README.md
-└── references.bib           # BibTeX source database
+└── references.bib                   # BibTeX source database
 ```
 
 ## Optional Packages
@@ -59,7 +61,7 @@ Set `\bibtrue` in `config.tex`, then add sources to `references.bib`:
 
 Cite in text with `\cite{key}`.
 
-When bibliography is enabled, use the **xelatex $\to$ biber $\to$ xelatex $\times$ 2** compilation recipe.
+When bibliography is enabled, use the **xelatex -> biber -> xelatex x 2** compilation recipe.
 
 ## Inserting Images
 
@@ -84,13 +86,32 @@ plt.savefig("figures/plot.pdf", bbox_inches="tight")
 
 | Recipe | When to use |
 |---|---|
-| xelatex $\times$ 2 | Default — two passes for correct TOC and references |
-| xelatex $\times$ 1 | Quick check when TOC is not needed |
-| xelatex $\to$ biber $\to$ xelatex $\times$ 2 | Only when `\bibtrue` is set in `config.tex` |
+| xelatex x 2 | Default — two passes for correct TOC and references |
+| xelatex x 1 | Quick check when TOC is not needed |
+| xelatex -> biber -> xelatex x 2 | Only when `\bibtrue` is set in `config.tex` |
+
+## Fonts
+
+Fonts are configured in `config.tex`:
+
+```latex
+\newcommand{\mainfont}{Times New Roman}  % for Windows/macOS
+% \newcommand{\mainfont}{Liberation Serif}  % for Linux
+
+\newcommand{\monofont}{Courier New}      % for Windows/macOS
+% \newcommand{\monofont}{Liberation Mono}   % for Linux
+```
+
+On Linux, comment out the Windows/macOS lines and uncomment the Linux alternatives.
 
 ## VS Code Settings
 
-Key parameters in `.vscode/settings.json`:
+`settings.json` is not tracked by git — each user creates it locally by copying the appropriate template from `.vscode/`:
+
+- `.settings-for-linux.json` — for Linux
+- `.settings-for-macos.json` — for macOS
+
+Key parameters:
 
 **LaTeX Workshop:**
 
