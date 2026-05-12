@@ -92,17 +92,14 @@ plt.savefig("figures/plot.pdf", bbox_inches="tight")
 
 ## Fonts
 
-Fonts are configured in `config.tex`:
+Fonts are selected automatically based on the OS via the `ifplatform` package (`config.tex`):
 
-```latex
-\newcommand{\mainfont}{Times New Roman}  % for Windows/macOS
-% \newcommand{\mainfont}{Liberation Serif}  % for Linux
+| OS | Main font | Monospace font |
+|---|---|---|
+| Linux | Liberation Serif | Liberation Mono |
+| Windows / macOS | Times New Roman | Courier New |
 
-\newcommand{\monofont}{Courier New}      % for Windows/macOS
-% \newcommand{\monofont}{Liberation Mono}   % for Linux
-```
-
-On Linux, comment out the Windows/macOS lines and uncomment the Linux alternatives.
+No manual configuration required.
 
 ## VS Code Settings
 
