@@ -90,17 +90,14 @@ plt.savefig("figures/plot.pdf", bbox_inches="tight")
 
 ## Шрифты
 
-Шрифты задаются в `config.tex`:
+Шрифты подбираются автоматически в зависимости от ОС через пакет `ifplatform` (`config.tex`):
 
-```latex
-\newcommand{\mainfont}{Times New Roman}  % для Windows/macOS
-% \newcommand{\mainfont}{Liberation Serif}  % для Linux
+| ОС | Основной шрифт | Моноширинный шрифт |
+|---|---|---|
+| Linux | Liberation Serif | Liberation Mono |
+| Windows / macOS | Times New Roman | Courier New |
 
-\newcommand{\monofont}{Courier New}      % для Windows/macOS
-% \newcommand{\monofont}{Liberation Mono}   % для Linux
-```
-
-На Linux раскомментируйте строки для Linux и закомментируйте строки для Windows/macOS.
+Ручная настройка не требуется.
 
 ## Настройки VS Code
 
