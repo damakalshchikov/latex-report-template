@@ -2,13 +2,16 @@
 % ШРИФТЫ
 % ==========================================
 
-% Для Linux: замените на Liberation Serif / Liberation Mono
+% Шрифт выбирается автоматически под ОС
+\usepackage{ifplatform}
 
-\newcommand{\mainfont}{Times New Roman}
-% \newcommand{\mainfont}{Liberation Serif}
-
-\newcommand{\monofont}{Courier New}
-% \newcommand{\monofont}{Liberation Mono}
+\iflinux
+    \newcommand{\mainfont}{Liberation Serif}
+    \newcommand{\monofont}{Liberation Mono}
+\else
+    \newcommand{\mainfont}{Times New Roman}
+    \newcommand{\monofont}{Courier New}
+\fi
 
 % ==========================================
 % ПАРАМЕТРЫ ДОКУМЕНТА
