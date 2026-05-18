@@ -108,3 +108,6 @@ _minted*
 
 # JetBrains IDEs
 .idea/
+
+# Other
+.DS_Store
