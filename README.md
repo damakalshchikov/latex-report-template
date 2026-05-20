@@ -22,7 +22,6 @@ latex-lab-template/
 │   └── settings.json                    # Your local settings (not tracked by git)
 ├── chapters/                        # Directory with report content files
 │   └── chapter1.tex                     # Example file
-├── figures/                         # Directory with plots, charts, diagrams, etc.
 ├── images/                          # Directory with various images
 │   └── logo.png                         # University logo
 ├── pages/                           # Directory with static pages
@@ -65,10 +64,7 @@ When bibliography is enabled, use the **xelatex -> biber -> xelatex x 2** compil
 
 ## Inserting Images
 
-Images are split across two directories:
-
-- `images/` — static images (logo, screenshots, photos)
-- `figures/` — plots and diagrams (preferably PDF or PNG)
+All images (photos, screenshots, plots, diagrams) are stored in `images/`.
 
 Specify the file path without the directory:
 
@@ -79,7 +75,7 @@ Specify the file path without the directory:
 It is advisable to use PDF for plots:
 
 ```python
-plt.savefig("figures/plot.pdf", bbox_inches="tight")
+plt.savefig("images/plot.pdf", bbox_inches="tight")
 ```
 
 ## Compilation Recipes
