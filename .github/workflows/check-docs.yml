@@ -1,0 +1,61 @@
+name: Check Documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "config.tex"
+      - "main.tex"
+      - "macros.tex"
+      - "README.md"
+      - "README.ru.md"
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+    paths:
+      - "config.tex"
+      - "main.tex"
+      - "macros.tex"
+      - "README.md"
+      - "README.ru.md"
+
+jobs:
+  check-docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Check documentation with Claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Check if README.md and README.ru.md are up to date with the LaTeX source files.
+
+            Perform the following checks:
+
+            1. **Optional package flags**: Read config.tex and find all `\newif\if*` flag definitions.
+               For each flag, verify it is documented in both README.md and README.ru.md
+               (look for both the `\<flag>false` and `\<flag>true` variants).
+
+            2. **Section parity**: Verify that README.md and README.ru.md have the same number
+               of `##` sections. The section names will differ (EN vs RU) but the count must match.
+
+            3. **Font table**: Verify that the fonts described in the README tables match
+               the fonts defined in config.tex for Linux and Windows/macOS.
+
+            4. **File structure**: Check that key files listed in the README file tree
+               (config.tex, macros.tex, main.tex, references.bib, pages/titlepage.tex,
+               pages/bibliography.tex) actually exist in the repository.
+
+            If everything is consistent, post a short confirmation comment on the PR.
+            If you find any issues, post a detailed comment listing each discrepancy
+            with a suggestion on how to fix it.
