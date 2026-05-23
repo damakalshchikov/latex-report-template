@@ -1,0 +1,56 @@
+name: Claude LaTeX Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+    paths:
+      - "**.tex"
+      - "**.bib"
+
+jobs:
+  claude-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run Claude Code Review
+        id: claude-review
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Review the changes in this PR for LaTeX-specific issues. Focus only on what changed.
+
+            Check for:
+
+            1. **Redundant packages**: packages **added in this PR** to the preamble in `main.tex`
+               that duplicate functionality already provided by another loaded package, or that
+               conflict with existing ones. Do NOT flag packages simply because they have no usage
+               in the template's own `.tex` files — this is a template, and preamble packages are
+               intentionally pre-loaded for end users.
+
+            2. **Non-idiomatic LaTeX**:
+               - `$$...$$` instead of `\[...\]` for display math
+               - `{\bf ...}` / `{\it ...}` instead of `\textbf{}` / `\textit{}`
+               - `\hline` in tables instead of `\toprule` / `\midrule` / `\bottomrule` (booktabs)
+               - Hardcoded spaces (`\ ` or `~`) where `\,` or natural spacing is more appropriate
+
+            3. **Flag system violations**: optional packages loaded unconditionally in `main.tex`
+               instead of being wrapped in the `\ifXXX...\fi` pattern used by the template.
+
+            4. **Metadata in wrong place**: document metadata (author, title, course, etc.)
+               hardcoded in `.tex` files instead of being defined as commands in `config.tex`.
+
+            Post inline comments on specific lines where issues are found.
+            Skip issues that are pre-existing and not part of this PR's diff.
+            If no issues are found, post a short confirmation comment.
+
