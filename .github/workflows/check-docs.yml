@@ -1,14 +1,6 @@
 name: Check Documentation
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "config.tex"
-      - "main.tex"
-      - "macros.tex"
-      - "README.md"
-      - "README.ru.md"
   pull_request:
     types: [opened, synchronize, ready_for_review, reopened]
     paths:
