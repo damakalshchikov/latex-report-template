@@ -15,7 +15,16 @@
 
 ```
 latex-lab-template/
-├──.vscode/                          # Каталог с настройками
+├── .claude/                         # Настройки Claude Code
+│   ├── CLAUDE.md                        # Контекст проекта для Claude
+│   └── settings.json                    # Разрешённые команды Claude
+├── .github/                         # GitHub Actions
+│   └── workflows/
+│       ├── build-latex.yml              # Компиляция PDF при push/PR
+│       ├── check-docs.yml               # Проверка согласованности README
+│       ├── claude-latex-review.yml      # Ревью LaTeX-кода
+│       └── claude.yml                   # Ассистент Claude по запросу (@claude)
+├── .vscode/                         # Каталог с настройками
 │   ├── .settings-for-linux.json         # Шаблон настроек для Linux
 │   ├── .settings-for-macos.json         # Шаблон настроек для macOS
 │   ├── keybindings.json                 # Шорткаты для ручной компиляции
@@ -27,7 +36,7 @@ latex-lab-template/
 ├── pages/                           # Каталог со статичными страницами
 │   ├── titlepage.tex                    # Титульная страница
 │   └── bibliography.tex                 # Страница со списком используемой литературы
-├──.gitignore
+├── .gitignore
 ├── config.tex                       # Параметры документа и шрифты
 ├── macros.tex                       # Собственные команды
 ├── main.tex                         # Преамбула и структура документа

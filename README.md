@@ -15,7 +15,16 @@ A ready-to-use template for academic reports. Configured for VS Code. Here is an
 
 ```
 latex-lab-template/
-├──.vscode/                          # Editor configuration directory
+├── .claude/                         # Claude Code configuration
+│   ├── CLAUDE.md                        # Project context for Claude
+│   └── settings.json                    # Allowed Claude commands
+├── .github/                         # GitHub Actions workflows
+│   └── workflows/
+│       ├── build-latex.yml              # Compile PDF on push/PR
+│       ├── check-docs.yml               # Check README consistency
+│       ├── claude-latex-review.yml      # LaTeX-specific code review
+│       └── claude.yml                   # General Claude assistant (@claude)
+├── .vscode/                         # Editor configuration directory
 │   ├── .settings-for-linux.json         # Settings template for Linux
 │   ├── .settings-for-macos.json         # Settings template for macOS
 │   ├── keybindings.json                 # Shortcuts for manual compilation
@@ -27,7 +36,7 @@ latex-lab-template/
 ├── pages/                           # Directory with static pages
 │   ├── titlepage.tex                    # Title page
 │   └── bibliography.tex                 # Bibliography page
-├──.gitignore
+├── .gitignore
 ├── config.tex                       # Document parameters and fonts
 ├── macros.tex                       # Custom commands
 ├── main.tex                         # Preamble and document structure
